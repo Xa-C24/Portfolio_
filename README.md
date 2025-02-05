@@ -20,7 +20,7 @@ I thrive on learning and problem-solving, and I am excited to apply my growing s
 
 ---
 
-## **🎮 Pierre-Papier-Ciseaux Game**
+## **🎮 Pierre-Feuille-Ciseaux Game**
 
 I also developed a fun Rock-Paper-Scissors game using HTML, CSS, and JavaScript! 🪨📄✂️
 
