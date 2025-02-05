@@ -36,6 +36,22 @@ I also developed a fun Rock-Paper-Scissors game using HTML, CSS, and JavaScript!
 
 Check it out in action and challenge yourself against the computer! 🎮
 
+## **🌌 Portfolio Parallax Project**
+
+One of my latest projects is an animated portfolio with a Parallax effect and Dark Mode! 🎨🚀
+
+✨ Features:
+
+📜 Smooth Parallax Scrolling for a dynamic effect
+
+🌙 Light/Dark Mode Toggle to improve UX
+
+💻 Fully Responsive for mobile and desktop
+
+✨ Animated Content that appears dynamically on scroll
+
+This project showcases my ability to build modern, interactive, and visually appealing web applications. It highlights my skills in CSS animations, JavaScript interactivity, and UI/UX design.
+
 
 ## **⏰ Digital Clock Project**
 
