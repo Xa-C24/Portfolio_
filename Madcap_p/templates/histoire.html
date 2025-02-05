@@ -1,0 +1,26 @@
+{% load static %} <!-- inclure des fichiers statiques -->
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Histoire du bateau - Madcap</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="icon" href="{% static 'images/logo3.png' %}" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  {% include 'header.html' %}
+  <main>
+    <section>
+      <h2>Une histoire riche en aventures</h2>
+      <p>Construit en 1874, le Madcap a traversé les époques. Récemment restauré, il est un témoignage vivant de
+        l'histoire maritime.</p>
+    </section>
+  </main>
+  {% include 'footer.html' %}
+</body>
+
+</html>
