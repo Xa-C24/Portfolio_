@@ -20,6 +20,24 @@ I thrive on learning and problem-solving, and I am excited to apply my growing s
 
 ---
 
+## **🎮 Pierre-Papier-Ciseaux Game**
+
+I also developed a fun Rock-Paper-Scissors game using HTML, CSS, and JavaScript! 🪨📄✂️
+
+✨ Features:
+
+🎨 Beautiful UI with colorful buttons and animations
+
+🖥️ Responsive Design for desktop and mobile
+
+🤖 AI Opponent that randomly selects a move
+
+🔥 Animated result box to display the outcome dynamically
+
+Check it out in action and challenge yourself against the computer! 🎮
+
+
+
 ## **🛳️ About the Madcap Project**
 
 **Madcap1874** is one of my most exciting projects, developed as part of my web development training. It is a **Django-based web application** designed to showcase the history of the legendary boat **Madcap**, manage association members, and provide real-time meteorological data. 🌊⚓
