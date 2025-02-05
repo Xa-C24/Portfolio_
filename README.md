@@ -37,8 +37,12 @@ I also developed a fun Rock-Paper-Scissors game using HTML, CSS, and JavaScript!
 Check it out in action and challenge yourself against the computer! 🎮
 
 
+## **⏰ Digital Clock Project**
 
-## **🛳️ About the Madcap Project**
+I created a stylish real-time digital clock using HTML, CSS, and JavaScript! This project updates the time every second, featuring a sleek modern design with glowing effects. It is a simple yet effective way to practice JavaScript timing functions and dynamic UI updates. Perfect for adding a minimalist and functional component to any webpage! 🕰️✨
+
+
+## **⛵Madcap 1874 Project __ DemoDay __**
 
 **Madcap1874** is one of my most exciting projects, developed as part of my web development training. It is a **Django-based web application** designed to showcase the history of the legendary boat **Madcap**, manage association members, and provide real-time meteorological data. 🌊⚓
 
