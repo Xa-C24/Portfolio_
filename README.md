@@ -46,7 +46,7 @@ As I complete my training at **Holberton School (March 2025)**, I am actively lo
 
 - **🔗 GitHub**: [github.com/Xa-C24](https://github.com/Xa-C24)
 - **📩 Email**: xr.piallu@gmail.com
-- **💼 LinkedIn**: [Your LinkedIn Link Here]
+- **💼 LinkedIn: linkedin.com/in/xavier-piedallu-710b04330/
 
 📩 **Let's connect and build something great together!** 🚀
 
