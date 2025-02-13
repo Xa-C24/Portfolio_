@@ -128,3 +128,4 @@ Le projet Madcap1874 vise à promouvoir et préserver l'histoire du bateau Madca
 ---
 📖 **Dernière mise à jour :** [Date automatique lors de la mise à jour]
 
+----
