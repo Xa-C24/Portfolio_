@@ -2,15 +2,10 @@
 /* Style global pour la mise en page */
 
 body {
-  font-family: 'Playfair Display', serif;
-  font-size: 16px;
-  line-height: 1.5;
-  background: url("../images/Voile_Bronze.jpg");
-  min-height: 100vh;
+  background: url("../images/Voile.png") no-repeat center center fixed;
   background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-position: center 95%;
+  color: white;
 }
 
 /* === HEADER STYLES === */
@@ -124,77 +119,96 @@ body {
   display: block;
 }
 
+/* Conteneur du logo météo header*/
+
+.nav-weather-logo {
+  display: flex;
+  align-items: center;
+  position: absolute; /* Permet de l'aligner tout à gauche */
+  left: 40px; /* Distance depuis le bord gauche */
+  top: 50%; /* Alignement vertical */
+  transform: translateY(-50%); /* Ajuste verticalement */
+} 
+
+/* Style du logo météo header */
+.nav-weather-logo img {
+  height: 50px; /* Taille ajustée */
+  width: 60px;
+  border-radius: 50%; /* Arrondi */
+  transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+/* 🔹 Adaptation responsive pour tablettes et mobiles */
+@media (max-width: 1024px) {
+  .nav-weather-logo {
+    left: 5px; /* Réduction de l'écart */
+  }
+
+  .nav-weather-logo img {
+    height: 45px; /* Réduction de la taille */
+    width: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-weather-logo {
+    left: 5px; /* Encore plus proche du bord sur mobile */
+  }
+
+  .nav-weather-logo img {
+    height: 40px; /* Ajustement plus petit */
+    width: 45px;
+  }
+}
+
+/* Effet au survol */
+.nav-weather-logo img:hover {
+  transform: scale(1.0) rotate(5deg);
+  filter: brightness(1.5);
+}
+
 
 /* === SECTIONS Index === */
 
 /* Conteneur de la vidéo index avec un cadre noir */
 
 .video-container-index {
-  display: flex;
-  /* Centre la vidéo dans son conteneur */
-  justify-content: center;
-  /* Centre la vidéo horizontalement */
-  padding: 20px;
-  /* Espacement autour de la vidéo */
-  padding: 55px;
-  /* Espacement interne entre la vidéo et le cadre noir */
-  max-width: 720px;
-  /* Largeur maximale du conteneur (vidéo incluse) */
-  margin: 20px auto;
-  /* Centre le conteneur horizontalement avec un espacement vertical */
-  border-radius: 15px;
-  /* Coins arrondis */
-  background: linear-gradient(135deg, #34495e, #2c3e50);
-  /* Dégradé en fond */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  /* Ombre douce */
-  border: 2px solid #e0e0e0;
-  /* cadre blanc */
-  box-shadow: 0 0 20px rgba(0, 183, 255, 0.5);
-  /* Éclat lumineux */
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
-  /* Animation */
+  display: flex; /* Centre la vidéo dans son conteneur */
+  justify-content: center;  /* Centre la vidéo horizontalement */
+  padding: 20px;  /* Espacement autour de la vidéo */
+  padding: 55px;  /* Espacement interne entre la vidéo et le cadre noir */
+  max-width: 720px; /* Largeur maximale du conteneur (vidéo incluse) */
+  margin: 20px auto;  /* Centre le conteneur horizontalement avec un espacement vertical */
+  border-radius: 15px;  /* Coins arrondis */
+  background: linear-gradient(125deg, #9dafbb, #1f2f3f); /* Dégradé en fond */
+  box-shadow: 0 8px 16px rgba(223, 16, 16, 0.3); /* Ombre douce */
+  border: 8px solid #e0e0e0; /* cadre blanc */
+  box-shadow: 0 0 50px rgba(240, 238, 238, 0.5);/* Éclat lumineux */
+  transition: transform 0.5s ease, box-shadow 0.5s ease; /* Animation */
 
 
 }
 
-.video-container-index:hover {
-  transform: scale(1.01);
-  /* Agrandit légèrement */
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
-  /* Ombre plus marquée */
-  border-color: rgb(239, 241, 241);
-  box-shadow: 0 0 30px rgb(235, 238, 240);
-}
+
 
 /* Vidéo */
 .video-container-index iframe {
-  width: 700px;
-  /* Largeur fixe pour la vidéo */
-  height: 350px;
-  /* Hauteur proportionnelle (16:9) */
-  border: none;
-  /* Supprime toute bordure de l'iframe */
-  border-radius: 10px;
-  /* Coins légèrement arrondis pour l’iframe */
-  border: 15px solid #080808;
+  width: 700px; /* Largeur fixe pour la vidéo */
+  height: 350px;  /* Hauteur proportionnelle (16:9) */
+  border: none;  /* Supprime toute bordure de l'iframe */
+  border-radius: 10px;  /* Coins légèrement arrondis pour l’iframe */
+  border: 10px solid #0c0c0c;
 }
 
 
 /* Conteneur pour les liens */
 .don-section {
-  text-align: left;
-  /* background-color: transparent;
-  backdrop-filter: blur(25px); */
-  /* Couleur de fond */
-  border-radius: 10px;
-  /* Coins arrondis */
+  text-align: left;  /* Couleur de fond */
+  border-radius: 10px;  /* Coins arrondis */
   padding: 20px;
   margin: 20px auto;
-  color: #fff;
-  /* Texte blanc */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  /* Ombre douce */
+  color: #fff;  /* Texte blanc */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* Ombre douce */
 }
 
 .don-section h2 {
@@ -214,6 +228,7 @@ body {
 .cta-links {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 15px;
   /* Espacement entre les boutons */
 }
@@ -250,6 +265,119 @@ body {
   /* Zoom léger */
 }
 
+@media (max-width: 768px) {
+  .cta-button, .don-button, .admin-button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+
+/* ----- Diaporama asso page --- */
+
+.diaporama-asso {
+  position: relative;
+  max-width: 540px;
+  height: 720px; /* Ajustez ici la hauteur souhaitée */
+  margin: 20px auto;
+  border: 5px solid #f9fdff; /* Bordure pour délimiter le cadre */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.diaporama-asso {
+  position: relative;
+    width: 540px; /* Largeur fixe */
+    height: 720px; /* Hauteur fixe */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.diaporama img {
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Remplit la zone sans déformer l'image */
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.diaporama img.active {
+  opacity: 1;
+}
+
+/* Style des boutons de navigation */
+.precedent,
+.suivant {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  z-index: 1000;
+}
+
+.precedent {
+  left: 20px;
+}
+
+.suivant {
+  right: 20px;
+}
+
+/* Effet hover sur les boutons */
+.precedent:hover,
+.suivant:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Style des flèches avec des triangles CSS */
+.precedent::before,
+.suivant::before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-top: 3px solid white;
+  border-right: 3px solid white;
+}
+
+.precedent::before {
+  transform: rotate(-135deg);
+}
+
+.suivant::before {
+  transform: rotate(45deg);
+}
+
+/* Style pour les boutons sur mobile */
+@media (max-width: 768px) {
+
+  .precedent,
+  .suivant {
+    padding: 10px 15px;
+  }
+
+  .precedent {
+    left: 10px;
+  }
+
+  .suivant {
+    right: 10px;
+  }
+}
+
+
 /* Diaporama Index */
 
 .diaporama-index {
@@ -263,7 +391,7 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.diaporama {
+.diaporama-index {
   position: relative;
     width: 850px; /* Largeur fixe */
     height: 450px; /* Hauteur fixe */
@@ -357,23 +485,23 @@ body {
 
 /* Style pour l'image  index */
 .don-image-index {
-  width: 55%;
-  /* Taille de l'image */
-  max-height: 600px;
-  /* Limite la hauteur */
-  object-fit: cover;
-  /* Ajuste l'image sans la déformer */
-  border-radius: 10px;
-  /* Coins arrondis */
-  margin-bottom: 20px;
-  /* Espacement sous l'image */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  /* Ombre douce */
+  width: 60%; /* Taille de l'image */
+  max-height: 550px; /* Limite la hauteur */
+  object-fit: cover;  /* Ajuste l'image sans la déformer */
+  border-radius: 10px; /* Coins arrondis */
+  margin-bottom: 20px; /* Espacement sous l'image */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);/* Ombre douce */
   border: 6px solid #f9fdff;
-  display: block;
-  /* Nécessaire pour le centrage avec margin auto */
+  display: block; /* Nécessaire pour le centrage avec margin auto */
   margin-left: auto;
   margin-right: auto;
+}
+
+@media (max-width: 768px) {
+  .don-image-index, .diaporama img, .video-container-index iframe {
+    max-width: 100%;
+    height: auto;
+  }
 }
 
 /* Style map météo */
@@ -384,22 +512,18 @@ body {
 #map-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  /* Centre la carte et le bouton */
+  align-items: center;  /* Centre la carte et le bouton */
   justify-content: center;
-  width: 100%;
-  /* Prend toute la largeur */
+  width: 100%;   /* Prend toute la largeur */
   margin: 0 auto;
 }
 
 /* Conteneur de la carte */
 #map-container {
-  width: 950px;
-  /* Taille normale au chargement */
+  width: 950px;  /* Taille normale au chargement */
   height: 450px;
-  max-width: 100%;
-  /* Pour éviter tout écrasement */
-  overflow: hidden;
+  max-width: 100%;  /* Pour éviter tout écrasement */
+  overflow: visible;
   display: flex;
   border: 7px solid #e0e0e0;
   justify-content: center;
@@ -408,8 +532,7 @@ body {
 
 /* Bouton clic vers plein écran */
 #fullscreen-btn {
-  margin-top: 15px;
-  /* Ajoute un espace entre la carte et le bouton */
+  margin-top: 15px;  /* Ajoute un espace entre la carte et le bouton */
   padding: 10px 24px;
   background-color: #ecc929;
   color: white;
@@ -428,189 +551,693 @@ body {
 }
 
 #map-container iframe {
-  width: 100%;
-  height: 100%;
+  width: 950px;
+  height: 450px;
+  
 }
 
 
 
-/* ================= Open Méteo ======= */
+/* ======== Open Méteo =========
+--                              --
+--                              --
+=================================*/
 
-/* From Uiverse.io by KSAplay */ 
+
+/* ------------------- Styles principaux de la carte météo ------------------- */
+
+.card-wrapper {
+  display: flex;             /* Alignement horizontal */
+  justify-content: space-between; /* Espacement automatique */
+  align-items: flex-start;   /* Aligner les éléments en haut */
+  gap: 110px;                 /* Espacement entre les éléments */
+  max-width: 1100px;         /* Largeur max pour éviter que ça prenne tout l'écran */
+  margin: 0 auto;            /* Centrer le conteneur */
+  padding: 50px;
+  margin-left: -40px !important;
+ 
+}
+
 .card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 180px;
-  width: 280px;
-  border-radius: 25px;
-  background: lightgrey;
-  overflow: hidden;
-  transition: 100ms ease;
-  box-shadow: rgba(0, 0, 0, 0.15) 2px 3px 4px;
-}
-
-/* ---------- Info section ---------- */
-
-.info-section {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  width: 200px;
+  height: 340px;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: -90px !important;
+  background-color: rgb(228, 226, 233);
+}
+
+/* ------------------- Paysage en arrière-plan ------------------- */
+.landscape-section {
+  position: relative;
   width: 100%;
-  height: 75%;
-  color: white;
-}
-
-.left-side {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  height: 100%;
-  z-index: 1;
-  padding-left: 18px;
-}
-
-button {
-  display: block;
-  border: none;
-  background: transparent;
-}
-
-.weather {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 5px;
-}
-
-.weather div {
-  display: flex;
-  align-items: center;
-}
-
-.weather div:nth-child(1) {
-  width: 40%;
-  height: auto;
-}
-
-.temperature {
-  font-size: 34pt;
-  font-weight: 500;
-  line-height: 8%;
-}
-
-.right-side {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: space-around;
-  height: 100%;
-  padding-right: 18px;
-  z-index: 1;
-}
-
-.right-side > div {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
-
-.hour {
-  font-size: 19pt;
-  line-height: 1em;
-}
-
-.date {
-  font-size: 15px;
-}
-
-/* ---------- Background ---------- */
-.background-design {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background-color: #ec7263;
+  height: 70%;
   overflow: hidden;
 }
 
-.circle {
-  background-color: #efc745;
-}
-
-.circle:nth-child(1) {
+.landscape-section * {
   position: absolute;
-  top: -80%;
-  right: -50%;
-  width: 300px;
-  height: 300px;
-  opacity: 0.4;
-  border-radius: 50%;
 }
 
-.circle:nth-child(2) {
-  position: absolute;
-  top: -70%;
-  right: -30%;
-  width: 210px;
-  height: 210px;
-  opacity: 0.4;
-  border-radius: 50%;
-}
-
-.circle:nth-child(3) {
-  position: absolute;
-  top: -35%;
-  right: -8%;
-  width: 100px;
-  height: 100px;
-  opacity: 1;
-  border-radius: 50%;
-}
-
-/* ---------- Days section ---------- */
-.days-section {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+/* Ciel avec un dégradé */
+.sky {
   width: 100%;
-  height: 25%;
-  background-color: #974859;
-  gap: 2px;
-  box-shadow: inset 0px 2px 5px #974859;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(247, 225, 87, 1) 0%, rgba(233, 101, 148, 1) 100%);
 }
 
-.days-section button {
+/* Soleil */
+.sun {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: white;
+  bottom: 40%;
+  left: 18%;
+  filter: drop-shadow(0px 0px 10px white);
+}
+
+/* Effet lumineux du soleil */
+.sun::after, .sun::before {
+  position: absolute;
+  content: "";
+  border-radius: 50%;
+  background-color: white;
+}
+
+.sun::after {
+  width: 118%;
+  height: 118%;
+  opacity: 0.5;
+}
+
+.sun::before {
+  width: 134%;
+  height: 134%;
+  opacity: 0.1;
+}
+
+/* Océan avec dégradé */
+.ocean {
+  overflow: hidden;
+  bottom: 0;
   width: 100%;
-  background-color: #a75265;
-  box-shadow: inset 0px 2px 5px #974859;
+  height: 28%;
+  background: linear-gradient(0deg, rgba(241, 192, 125, 1) 0%, rgba(247, 218, 150, 1) 100%);
+}
+
+/* Reflets dans l'eau */
+.reflection {
+  position: absolute;
+  background-color: white;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+/* Montagnes et collines */
+.hill-1, .hill-2, .hill-3, .hill-4 {
+  border-radius: 50%;
+  position: absolute;
+}
+
+.hill-1 {
+  right: -15%;
+  bottom: 15%;
+  width: 120px;
+  height: 40px;
+  background-color: #e6b29d;
+}
+
+.hill-2 {
+  right: -86%;
+  bottom: 10%;
+  width: 150px;
+  height: 80px;
+  background-color: #c29182;
+}
+
+.hill-3 {
+  left: -100%;
+  bottom: -28%;
+  width: 350px;
+  height: 150px;
+  background-color: #b77873;
+}
+
+.hill-4 {
+  right: -100%;
+  bottom: -40%;
+  width: 350px;
+  height: 150px;
+  background-color: #a16773;
+}
+
+/* Arbres sur les collines */
+.tree-1, .tree-2, .tree-3 {
+  position: absolute;
+  z-index: 8;
+}
+
+.tree-1 {
+  bottom: 10%;
+  left: 5%;
+  width: 30px;
+  height: 50px;
+}
+
+.tree-2 {
+  bottom: 10%;
+  left: 30%;
+  width: 35px;
+  height: 55px;
+}
+
+.tree-3 {
+  bottom: 10%;
+  right: 5%;
+  width: 40px;
+  height: 60px;
+}
+
+/* ------------------- Contenu météo ------------------- */
+.content-section {
+  width: 100%;
+  height: 15%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Informations météo (température, vent) */
+.weather-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  right: 0%;
+  width: 100%;
+  padding-top: 15px;
+  color: white;
+  z-index: 10;
+}
+
+/* Icône météo */
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon svg {
+  width: 40px;
+}
+
+/* Température */
+.temperature {
+  font-size: 18px !important;
+  font-weight: bold;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Vent */
+.vent {
+  font-size: 18px !important;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* ------------------- Conditions météo ------------------- */
+
+/* Conteneur pour l'icône et le texte météo */
+.weather-condition {
+  display: flex;
+  align-items: center; /* Aligner horizontalement */
+  justify-content: center;
+  position: absolute;
+  top: 42%; /* Ajuste la position verticale */
+  left: 1%; /* Ajuste la position horizontale */
+  color: white;
+  font-size: 14px; /* Ajuste la taille du texte */
+  font-weight: bold;
+}
+
+/* Icône météo */
+#weather-icon {
+  font-size: 18px; /* Ajuste la taille de l'icône */
+  margin-right: 5px; /* Espacement entre l'icône et le texte */
+}
+
+
+
+/* ------------------- Prévisions sur 3 jours ------------------- */
+.forecast {
+  background-color: #f8f9fa; /* Fond clair */
+  border-radius: 0 0 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 2px 3px;
+  height: auto;
+}
+
+.forecast > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 0.3px 0;
+}
+
+.forecast p {
+  margin: 0;
+}
+
+/* Met en majuscule la première lettre du jour */
+.forecast > div p:first-child {
+  text-transform: capitalize;
+}
+
+/* Températures affichées en gris */
+.forecast > div p:last-child {
+  font-size: 13px;
+  color: #747474;
+}
+
+/* ------------------- Séparateur entre les jours de prévisions ------------------- */
+.separator {
+  height: 1px !important;
+  width: 90%;
+  background-color: rgba(12, 11, 11, 0.5);
+  margin: 2px 0;
+}
+
+/* ------------------- Date actuelle ------------------- */
+.date {
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+  text-transform: capitalize;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+
+
+/* === STYLES UNIQUEMENT POUR LA PAGE HISTOIRE === */
+
+
+.histoire-page main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 5%;
+}
+
+.histoire-page section {
+  max-width: 45%; /* Réduction pour séparer les blocs */
+  width: 50%;
+  padding: 20px;
+  margin-bottom: 50px;
+  background: #455868 !important;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+  position: relative;
+  z-index: 5; /* Doit être inférieur à celui des images */
+  overflow: visible; /* S'assure que rien ne cache l'image zoomée */
+}
+
+.histoire-page section:nth-child(even) {
+  margin-left: 5%; 
+  align-self: flex-start;
+  max-width: 50%;
+}
+
+.histoire-page section:nth-child(odd) {
+  margin-right: 5%;
+  align-self: flex-end;
+  max-width: 50%;
+}
+
+h1, h2 {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+}
+
+
+.histoire-page li {
+  color: #ffffff !important; /* Texte en blanc */
+  font-weight: bold;
+  line-height: 1.8;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6); /* Ombre légère pour meilleure visibilité */
+}
+
+.histoire-page p {
+  color: #C2BEBE !important; /* Texte en blanc */
+  font-size: 1.1em; /* Augmente légèrement la taille pour une meilleure lisibilité */
+  font-weight: 500; /* Texte plus lisible sans être trop gras */
+  line-height: 1.6; /* Espacement pour une meilleure lecture */
+  padding: 5px 8px; /* Ajoute un peu d’espace autour */
+  background: rgba(255, 255, 255, 0.15); /* Fond légèrement transparent */
+  border-radius: 8px; /* Coins arrondis pour un look plus propre */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Légère ombre pour détacher le texte */
+}
+blockquote {
+  font-style: italic;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 10px;
+  border-left: 4px solid #ddd;
+}
+
+.histoire-page ul {
+  list-style: none; /* Supprime les puces par défaut */
+  padding: 0;
+}
+
+
+
+/* Style pour l'image de la frégate dans l'histoire */
+.fregate-histoire {
+  display: block;
+  max-width: 80%; /* S'assure que l'image ne dépasse pas du cadre */
+  margin: 20px auto; /* Centre l'image horizontalement */
+  border-radius: 10px;  /* Coins arrondis */
+  border: 6px solid #f9fdff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Ombre pour donner du relief */
+  cursor: pointer; /* Curseur en mode pointer pour indiquer un clic possible */
+  transition: transform 0.7s ease, box-shadow 0.7s ease; /* Animation fluide */
+  position: relative; /* Positionnement contrôlé */
+  z-index: 5; /* Niveau initial */
+}
+
+.fregate-histoire:hover {
+  transform: scale(1.6); /* Zoom léger */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Ombre plus marquée */
+  z-index: 20; /* L'image passe au-dessus des autres éléments */
+}
+
+
+/* ========== SECTIONS livre d'or ========= */
+
+/* Conteneur principal qui regroupe le formulaire et les commentaires */
+.livredor-container {
+  display: flex;
+  justify-content: space-between; /* Sépare les deux blocs */
+  align-items: flex-start; /* Alignement en haut */
+  gap: 30px; /* Espacement entre les sections */
+  max-width: 1100px; /* Ajuste la largeur maximale */
+  margin: 0 auto; /* Centre le conteneur */
+  padding: 20px;
+}
+
+/* Section "Votre expérience" (les commentaires) */
+.livredor-avis {
+  flex: 1; /* Prend tout l'espace restant */
+  max-width: 500px; /* Ajuste la largeur */
+  background: #455868;
+  border-radius: 10px;
+  padding: 20px;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  text-align: left;
+}
+
+/* Section "Laissez votre avis" (le formulaire) */
+.livredor-form {
+  width: 400px; /* Largeur fixe */
+  background: #455868;
+  border-radius: 10px;
+  padding: 25px;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+/* Labels */
+.livredor-form label {
+  display: block;
+  font-weight: bold;
+  margin: 10px 0 5px;
+  text-align: left;
+}
+
+/* Champs de texte */
+.livredor-form input, 
+.livredor-form textarea, 
+.livredor-form select {
+  width: 100%;
+  max-width: 300px;
+  padding: 5px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 2px solid #ccc;
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.livredor-form textarea {
+  height: 120px; /* Ajuster la hauteur sans trop élargir */
+  resize: vertical; /* Permettre d'ajuster si nécessaire */
+}
+
+/* Ajustement des champs Nom & Email côte à côte */
+.livredor-form .double-fields {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.livredor-form .double-fields div {
+  width: 48%;
+}
+
+
+/* Réduire l'espace au-dessus de "Photo 1" */
+.livredor-form label[for="photo1"] {
+  margin-top: 0.1px; /* Réduit l'espace au-dessus */
+}
+
+/* Ajustement du champ "Note" */
+.livredor-form .note-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+/* Bouton d'envoi */
+.livredor-form button {
+  background-color: #003b57;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 16px;
+  transition: background 0.3s ease;
+  margin-top: 15px;
   cursor: pointer;
-  transition: 100ms ease;
+  border: none;
+}
+
+.livredor-form button:hover {
+  background-color: #005a80;
+}
+
+h1, h2 {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+}
+
+li {
+  line-height: 1.9;
+}
+
+
+/* Message de retour après envoi */
+
+
+blockquote {
+  font-style: italic;
+  background: rgba(255, 255, 255, 0.349);
+  padding: 10px;
+  border-left: 4px solid #f8f7f7;
+}
+
+
+.messages {
+  margin: 20px auto;
+  width: 80%;
+  text-align: center;
+}
+
+.alert {
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.alert-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* Etoile pour notation Avis */
+
+/* Conteneur des étoiles */
+.star-rating {
+  display: flex;
+  flex-direction: row-reverse; /* Permet de commencer par 5 étoiles */
+  justify-content: center;
+  font-size: 30px;
   gap: 5px;
 }
 
-.days-section button:hover {
-  scale: 0.9;
+/* Cache les boutons radio */
+.star-rating input {
+  display: none;
+}
+
+/* Style des étoiles */
+.star-rating .star {
+  cursor: pointer;
+  color: #f7f1f1; /* Couleur par défaut (gris) */
+  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* Effet au survol */
+.star-rating .star:hover,
+.star-rating .star:hover ~ .star {
+  color: rgb(160, 147, 73);
+  transform: scale(1.2);
+}
+
+/* Effet lors de la sélection */
+.star-rating input:checked ~ .star {
+  color: rgb(250, 250, 3); /* Étoiles sélectionnées en doré */
+  animation: pop 0.4s ease-in-out;
+}
+
+/* Animation au clic */
+@keyframes pop {
+  50% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ---- Coté avis postés -----*/
+
+/* Conteneur principal de chaque avis */
+.avis-container {
+  background-color:#0f84e4; /* Fond semi-transparent */
+  padding: 15px;
+  margin-bottom: 20px;
   border-radius: 10px;
-}
-
-.days-section .day {
-  font-size: 10pt;
-  font-weight: 500;
   color: white;
-  opacity: 0.7;
+  width: 80%;
+  max-width: 600px;
 }
 
-.icon-weather-day {
+/* Alignement du nom et des étoiles sur la même ligne */
+.avis-header {
   display: flex;
   align-items: center;
-  width: 20px;
-  height: 100%;
+  justify-content: space-between; /* Espacement entre le nom et les étoiles */
 }
+
+/* Style du nom */
+.avis-nom {
+  font-weight: bold;
+  font-size: 18px;
+  color: #f8f8f7; /* Doré pour faire ressortir */
+}
+
+/* Style des étoiles */
+.avis-stars {
+  color: gold;
+  font-size: 18px;
+}
+
+/* Style de la date */
+.avis-date {
+  display: block;
+  font-weight: bold;
+  margin-top: 7px;
+  color:#C31415;
+  font-size: 16px;
+}
+
+/* Mise en forme du commentaire */
+.avis-commentaire {
+  font-style: italic;
+  color: #ddd;
+  margin-top: 10px;
+}
+
+/* Mise en forme des images */
+.avis-photos img {
+  max-width: 160px;
+  border-radius: 5px;
+  border: 2px solid #f9fdff;
+  margin: 5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Ombre pour donner du relief */
+  cursor: pointer; /* Curseur en mode pointer pour indiquer un clic possible */
+  transition: transform 0.9s ease, box-shadow 0.9s ease; /* Animation fluide */
+}
+
+.avis-photos img:hover {
+  transform: scale(3.3); /* Zoom léger */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Ombre plus marquée */
+  z-index: 10; /* Place l'image agrandie au-dessus des autres */
+  position: relative; /* Évite les chevauchements avec les autres éléments */
+}
+
+/* Conteneur de chaque avis */
+.avis-container {
+    background: rgba(255, 255, 255, 0.1); /* Fond léger */
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px; /* Espacement entre chaque avis */
+}
+
+/* Séparateur entre les avis */
+.avis-separator {
+    border: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
+    margin-top: 15px;
+}
+
 
 
 /* ========== SECTIONS don contact ========= */
@@ -723,12 +1350,9 @@ h2 {
 }
 
 .don-header {
-  background-color: transparent !important;
-  /* Supprime le fond bleu */
-  border: none !important;
-  /* Supprime la bordure */
-  box-shadow: none !important;
-  /* Supprime toute ombre */
+  background-color: transparent !important; /* Supprime le fond bleu */
+  border: none !important;  /* Supprime la bordure */
+  box-shadow: none !important;  /* Supprime toute ombre */
 }
 
 /* === SECTIONS l'association === */
@@ -901,18 +1525,13 @@ a:hover {
 }
 
 .don-section {
-  background: #455868;
-  /* background-color: transparent; */
+  background: #455868;/* background-color: transparent; */
   backdrop-filter: blur(25px);
   border: 2px solid #e0e0e0;
-  padding: 10px;
-  /* Ajout d’espace interne */
-  border-radius: 12px;
-  /* Coins arrondis accentués */
-  margin-bottom: 20px;
-  /* Espacement entre sections augmenté */
-  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.1);
-  /* Ombre renforcée */
+  padding: 10px;  /* Ajout d’espace interne */
+  border-radius: 12px;  /* Coins arrondis accentués */
+  margin-bottom: 20px;  /* Espacement entre sections augmenté */
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.1);  /* Ombre renforcée */
 }
 
 /* Modification ajoutée : animation au survol */
@@ -1048,7 +1667,7 @@ footer p {
   }
 
   .don-section {
-    background-color: transparent;
+    background-color: #455868;
     backdrop-filter: blur(25px);
     padding: 15px;
   }
@@ -1287,49 +1906,37 @@ header {
 }
 
 /* ====== Section Evenements ====== */
+
 .evenement-container {
-  display: flex;
-  /* Active le mode flexbox */
-  align-items: center;
-  /* Centre le texte et l’image verticalement */
-  justify-content: space-between;
-  /* Répartit l’espace entre texte et image */
-  flex-wrap: wrap;
-  /* Permet l’adaptation en version mobile */
-  gap: 10px;
-  /* Espacement entre le texte et l’image */
+  display: flex; /* Active le mode flexbox */
+  align-items: center;  /* Centre le texte et l’image verticalement */
+  justify-content: space-between;  /* Répartit l’espace entre texte et image */
+  flex-wrap: wrap;  /* Permet l’adaptation en version mobile */
+  gap: 10px;   /* Espacement entre le texte et l’image */
+  max-width: 1000px; /* Limite la largeur pour éviter que ça s’étale trop */
+  margin: 0 auto; /* Centre le bloc */
+  padding: 20px; /* Ajoute un peu d’espace intérieur */
 }
 
 .evenement-texte {
-  flex: 1;
-  /* Prend tout l’espace disponible */
-  min-width: 300px;
-  /* Assure une lisibilité correcte */
+  flex: 1;  /* Prend tout l’espace disponible */
+  min-width: 300px;  /* Assure une lisibilité correcte */
 }
 
 .evenement-image-droite {
   float: right;
-  /* L'image est alignée à droite */
-  margin-left: 90px;
-  /* Ajoute un espace entre l'image et le texte */
-  max-width: 35%;
-  /* L'image prendra jusqu'à 40% de la largeur */
+  margin-left: 50px; /* Réduit l’espacement pour éviter trop de décalage */
+  max-width: 40%; /* Augmente un peu la largeur */
   border-radius: 10px;
-  /* Coins arrondis */
   border: 6px solid #f9fdff;
-  transform: translateX(-50px);
-  /* Décale vers la gauche */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  /* Ombre légère */
+  transition: transform 0.3s ease-in-out;
 }
 
 .link-evenement {
-  display: flex;
-  /* Aligne les liens sur la même ligne */
-  gap: 15px;
-  /* Espacement entre les liens */
-  justify-content: center;
-  /* Centre les liens horizontalement */
+  display: flex;/* Aligne les liens sur la même ligne */
+  gap: 15px;/* Espacement entre les liens */
+  justify-content: center; /* Centre les liens horizontalement */
   margin: 10px 0;
 }
 
@@ -1352,6 +1959,43 @@ header {
   /* Texte blanc au survol */
   text-decoration: underline;
 }
+
+/* Ajustement pour mobile */
+@media (max-width: 768px) {
+  .evenement-image-droite {
+    float: none; /* Désactive le float */
+    max-width: 100%; /* Image en pleine largeur */
+    margin-left: 0;
+    display: block;
+    margin: 0 auto; /* Centre l’image */
+  }
+}
+
+@media (max-width: 768px) {
+  .evenement-container, .contact-section, .diaporama-index {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .evenement-image-droite {
+    max-width: 100%;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.5em;
+  }
+  h2 {
+    font-size: 1.2em;
+  }
+  p {
+    font-size: 0.9em;
+  }
+}
+
+/* -----Diaporama asso page ---- */
 
 
 /* === NAVIGATION MENU === */
@@ -1449,16 +2093,11 @@ main p {
 /* === SECTIONS === */
 /* Style des sections */
 section {
-  background-color: transparent;
-  /* Fond transparent */
-  color: #fff;
-  /* Couleur du texte */
-  padding: 10px;
-  /* Espacement intérieur */
-  margin-bottom: 20px;
-  /* Espacement en bas */
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-  /* Ombre portée sur le texte */
+  background-color: transparent;  /* Fond transparent */
+  color: #fff;  /* Couleur du texte */
+  padding: 10px;  /* Espacement intérieur */
+  margin-bottom: 20px;  /* Espacement en bas */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);  /* Ombre portée sur le texte */
 }
 
 /* === FOOTER STYLES === */
@@ -1513,6 +2152,13 @@ footer p {
   /* Ajustez la largeur selon votre besoin */
   margin: 0 auto;
   /* Centre le formulaire horizontalement */
+}
+
+@media (max-width: 768px) {
+  .contact-form, .don-page, .admin-login-page {
+    width: 90% !important;
+    max-width: none !important;
+  }
 }
 
 .contact-form label {

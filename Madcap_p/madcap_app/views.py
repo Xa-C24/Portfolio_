@@ -38,6 +38,16 @@ from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 import dns.resolver, re
 
+from .models import Avis  # Pour récupérer les avis
+from .forms import AvisForm  # Pour gérer le formulaire
+
+import logging
+import os
+
+# Changement de langue FR/E
+from django.utils.translation import activate
+from django.conf import settings
+from django.http import HttpResponseRedirect
 
 def index(request):
     return render(request, 'index.html')
@@ -61,6 +71,8 @@ def histoire(request):
 
 def evenements(request):
     return render(request, 'evenements.html')
+
+
 
 # Admin access
 
@@ -134,54 +146,57 @@ def search_members(request):
 
 
 def validate_email_domain(email):
-    """Valide si le domaine de l'adresse email existe et est cohérent."""
+    """Valide si le domaine de l'adresse email existe sans restriction spécifique."""
     try:
         domain = email.split('@')[1]  # Extrait le domaine
         dns.resolver.resolve(domain, 'MX')  # Vérifie les enregistrements MX du domaine
 
-        # Vérifier les fautes courantes
-        common_domains = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com']
-        if domain not in common_domains:
-            raise ValidationError(
-                f"L'adresse Email '{domain}' semble incorrect. Vouliez-vous écrire l'un de ceux-ci ? {', '.join(common_domains)}"
-            )
     except (IndexError, dns.resolver.NXDOMAIN, dns.resolver.NoAnswer, dns.resolver.Timeout):
         raise ValidationError("L'adresse email n'est pas valide.")
 
 # Formulaire de contact suite
 
+# 🔥 Initialisation du logger
+logger = logging.getLogger(__name__)
+
 def submit_contact(request):
     if request.method == 'POST':
         name = request.POST.get('name')
         email = request.POST.get('email')
-        phone = request.POST.get('phone', '').strip()  # Supprime les espaces inutiles
+        phone = request.POST.get('phone', '').strip()
         message = request.POST.get('message')
 
-        # Validation des champs obligatoires
+        # 🔥 Log des données reçues
+        print(f"📩 Tentative d'envoi avec : {name}, {email}, {phone}, {message}")
+        logger.info(f"📩 Tentative d'envoi avec : {name}, {email}, {phone}, {message}")
+
+        # Vérification des champs obligatoires
         if not name or not email or not message:
-            messages.error(request, "Veuillez remplir tous les champs obligatoires.")
+            messages.error(request, "❌ Veuillez remplir tous les champs obligatoires.")
+            print("❌ Erreur : Champs manquants")
             return redirect('contact')
 
         # Validation de l'email
         try:
             validate_email(email)
-            validate_email_domain(email)
+            print(f"✅ Email valide : {email}")
         except ValidationError as e:
             messages.error(request, str(e))
+            print(f"❌ Erreur email : {str(e)}")
             return redirect('contact')
-
-        # Validation du téléphone (uniquement si renseigné)
-        if phone:
-            try:
-                phone = validate_phone_number(phone)  # Valide et normalise le numéro
-            except ValidationError as e:
-                messages.error(request, str(e))
-                return redirect('contact')
 
         # Vérification de la longueur du message
         if len(message) < 20:
-            messages.error(request, "Le message doit contenir au moins 20 caractères.")
+            messages.error(request, "❌ Le message doit contenir au moins 20 caractères.")
+            print("❌ Erreur : Message trop court")
             return redirect('contact')
+
+        # 🔥 Récupération des infos d'email depuis le .env
+        email_host_user = os.getenv("EMAIL_HOST_USER")
+        email_host_password = os.getenv("EMAIL_HOST_PASSWORD")
+
+        print(f" EMAIL_HOST_USER = {email_host_user}")
+        print(f" EMAIL_HOST_PASSWORD = {email_host_password}")
 
         # Préparation de l'email
         subject = f"Nouveau message de {name} via le formulaire de contact"
@@ -189,11 +204,15 @@ def submit_contact(request):
         recipient_list = ['xr.piallu@gmail.com']
 
         try:
-            send_mail(subject, message_body, email, recipient_list)
-            messages.success(request, 'Votre message a bien été envoyé. Nous reviendrons vers vous dans les meilleurs délais.')
+            print(f"📤 Tentative d'envoi d'email de {email_host_user} à {recipient_list}...")
+            send_mail(subject, message_body, email_host_user, recipient_list, fail_silently=False)
+            messages.success(request, '✅ Votre message a bien été envoyé 📤 Nous reviendrons vers vous dans les meilleurs délais.')
+            print("✅ Email envoyé avec succès !")
         except Exception as e:
-            messages.error(request, "Une erreur est survenue lors de l'envoi de votre message.")
-           
+            messages.error(request, "❌ Une erreur est survenue lors de l'envoi de votre message, veuillez réessayer.")
+            logger.error(f"❌ Erreur d'envoi d'email : {str(e)}")
+            print(f"❌ Erreur d'envoi d'email : {str(e)}")
+
         return redirect('contact')
 
     return render(request, 'contact.html')
@@ -215,3 +234,76 @@ def validate_phone_number(phone):
     if not re.match(pattern, normalized_phone):
         raise ValidationError("Le numéro de téléphone n'est pas valide. Utilisez un format français ou international.")
     return normalized_phone
+
+
+# Avis
+
+def livre_dor(request):
+    avis_list = Avis.objects.order_by('-date')  # Afficher les avis du plus récent au plus ancien
+
+    if request.method == 'POST':
+        form = AvisForm(request.POST, request.FILES)  # Prend en charge les textes et fichiers
+        
+        if form.is_valid():
+            # Récupération des données
+            nom = form.cleaned_data['nom']
+            email = form.cleaned_data['email']
+            telephone = form.cleaned_data['telephone']
+            commentaire = form.cleaned_data['commentaire']
+            note = form.cleaned_data['note']
+
+            #  Validation de l'email
+            try:
+                validate_email(email)
+                validate_email_domain(email)
+            except ValidationError as e:
+                messages.error(request, f"Erreur email : {e}")
+                return redirect('livre_dor')
+
+            # Validation du numéro de téléphone
+            try:
+                telephone = validate_phone_number(telephone)  # Normalisation du numéro
+            except ValidationError as e:
+                messages.error(request, f"Erreur téléphone : {e}")
+                return redirect('livre_dor')
+
+            # Vérification de la longueur du message
+            if len(commentaire) < 20:
+                messages.error(request, "Le message doit contenir au moins 20 caractères.")
+                return redirect('livre_dor')
+
+            #  Enregistrement de l'avis dans la base de données
+            avis = form.save(commit=False)
+            avis.telephone = telephone  # Stocke la version normalisée du numéro
+            avis.save()
+
+
+            #  Ajout du message de confirmation
+            messages.success(request, "Votre partage d'expérience est bien pris en compte. Il sera en ligne dans les plus brefs délais après validation.")
+            return redirect('livre_dor')  # Recharge la page pour afficher le message
+
+        else:
+            messages.error(request, "Erreur lors de l'envoi de votre avis. Veuillez vérifier les champs et réessayer.")
+
+    else:
+        form = AvisForm()
+
+    return render(request, 'livre_dor.html', {'form': form, 'avis_list': avis_list})
+
+
+# Changement de langue FR/EN
+
+def change_language(request, lang_code):
+    if lang_code in dict(settings.LANGUAGES).keys():
+        activate(lang_code)  # 🔥 Active immédiatement la langue
+        request.session['django_language'] = lang_code  # 🔥 Stocke la langue dans la session
+        response = HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+        response.set_cookie('django_language', lang_code, max_age=60*60*24*365)  # 🔥 Stocke aussi dans le cookie
+        return response
+    
+    return HttpResponseRedirect('/')
+
+def liste_membres(request):
+    """Affiche la liste des membres"""
+    membres = Member.objects.all()
+    return render(request, 'liste_membres.html', {'membres': membres})
