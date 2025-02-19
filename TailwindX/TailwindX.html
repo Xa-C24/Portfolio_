@@ -3,9 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Garage Niv’Adventure - Accueil</title>
+    <img src="{% static 'images/logo.png' %}" alt="Logo Garage Niv’Adventure" class="h-12">
+    <h1 class="text-5xl font-bold text-white tracking-widest font-oswald">
+      Garage Niv’Adventure
+  </h1>
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+
 </head>
 <body class="bg-gray-100 text-gray-900">
     
@@ -21,7 +28,7 @@
         </ul>
     </nav>
     
-    <header class="bg-gray-900 text-white text-center p-16">
+    <header class="bg-gray-500 text-white text-center p-16">
         <h2 class="text-4xl font-bold text-gray-300">Votre garage automobile à Scionzier</h2>
         <p class="mt-4 text-gray-400">Mécanique - Entretien - Réparations</p>
         <button class="mt-6 px-6 py-3 bg-gray-700 text-white font-semibold rounded-lg shadow-md hover:bg-gray-600 transition-all duration-300">Prendre Rendez-vous</button>
@@ -52,7 +59,7 @@
                 'Service impeccable, je recommande vivement.',
                 'Un vrai expert en mécanique, toujours disponible !'] }">
             <p class="text-gray-600 italic" x-text="avis[index]"></p>
-            <button class="mt-4 px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-900 transition" @click="index = (index + 1) % avis.length">Suivant</button>
+            <button class="mt-4 px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-900 transition" @click="index = (index + 1) % avis.length">Suivant</button>
         </div>
     </section>
     
@@ -60,10 +67,22 @@
         <h3 class="text-2xl font-semibold">Nous Contacter</h3>
         <p class="mt-4 text-gray-600">📍 85 Av. de la Colombière, 74950 Scionzier</p>
         <p class="mt-2 text-gray-600">📞 07 87 15 02 48</p>
-        <div class="mt-4">
-            <iframe src="https://www.google.com/maps?q=85+Av.+de+la+Colombi%C3%A8re,+74950+Scionzier&output=embed" 
-                    width="300" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
+
+        <div class="flex justify-end mt-[-20px] mr-10">
+          <iframe src="https://www.google.com/maps?q=85+Av.+de+la+Colombi%C3%A8re,+74950+Scionzier&output=embed"
+                  width="400" height="250"
+                  class="shadow-lg rounded-lg border-2 border-gray-400"></iframe>
+      </div>
+      
+        <div x-data="{ size: 300 }" class="flex justify-center mt-4">
+          <iframe :width="size" :height="size / 1.5"
+                  src="https://www.google.com/maps?q=..."
+                  class="shadow-lg rounded-lg border-2 border-gray-400"></iframe>
+          <button class="ml-4 px-4 py-2 bg-blue-500 text-white rounded-lg"
+                  @click="size = size + 50">
+              Agrandir la carte
+          </button>
+      </div>
     </section>
     
     <footer class="bg-white shadow-md p-4 text-center">
