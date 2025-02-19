@@ -3,34 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projet Moderne</title>
+    <title>Garage Niv’Adventure - Accueil</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body class="bg-gray-100 text-gray-900">
     
     <nav class="bg-white shadow-md p-4 flex justify-between items-center">
-        <h1 class="text-xl font-bold">Mon Projet</h1>
+        <h1 class="text-xl font-bold">Garage Niv’Adventure</h1>
         <ul class="flex gap-4">
-            <li><a href="#" class="text-blue-500 hover:underline">Accueil</a></li>
-            <li><a href="#" class="text-blue-500 hover:underline">À propos</a></li>
-            <li><a href="#" class="text-blue-500 hover:underline">Contact</a></li>
+            <li><a href="#services" class="text-blue-500 hover:underline">Nos Services</a></li>
+            <li><a href="#avis" class="text-blue-500 hover:underline">Avis Clients</a></li>
+            <li><a href="#contact" class="text-blue-500 hover:underline">Contact</a></li>
         </ul>
     </nav>
     
     <header class="bg-blue-500 text-white text-center p-16">
-        <h2 class="text-4xl font-bold">Bienvenue sur notre site moderne</h2>
-        <p class="mt-4">Une interface épurée et réactive avec Tailwind et Alpine.js</p>
-        <button class="mt-6 px-6 py-3 bg-white text-blue-500 font-semibold rounded-lg shadow-md hover:bg-gray-100">Découvrir</button>
+        <h2 class="text-4xl font-bold">Votre garage automobile à Scionzier</h2>
+        <p class="mt-4">Mécanique - Entretien - Réparations</p>
+        <button class="mt-6 px-6 py-3 bg-white text-blue-500 font-semibold rounded-lg shadow-md hover:bg-gray-100">Prendre Rendez-vous</button>
     </header>
     
-    <section class="p-10 text-center">
-        <h3 class="text-2xl font-semibold">Pourquoi nous choisir ?</h3>
-        <p class="mt-4 text-gray-600">Une solution simple, rapide et moderne pour votre projet.</p>
+    <section id="services" class="p-10 text-center">
+        <h3 class="text-2xl font-semibold">Nos Services</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+            <div class="bg-white p-6 shadow-md rounded-lg">
+                <h4 class="text-lg font-bold">Réparation</h4>
+                <p class="mt-2 text-gray-600">Diagnostic et réparations de votre véhicule.</p>
+            </div>
+            <div class="bg-white p-6 shadow-md rounded-lg">
+                <h4 class="text-lg font-bold">Entretien</h4>
+                <p class="mt-2 text-gray-600">Vidange, freins, pneus et bien plus encore.</p>
+            </div>
+            <div class="bg-white p-6 shadow-md rounded-lg">
+                <h4 class="text-lg font-bold">Carrosserie</h4>
+                <p class="mt-2 text-gray-600">Réparations et peinture de carrosserie.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="avis" class="p-10 text-center bg-gray-200">
+        <h3 class="text-2xl font-semibold">Avis Clients</h3>
+        <div class="mt-6">
+            <p class="text-gray-600 italic">"Très professionnel, rapide et efficace !" - Client satisfait</p>
+        </div>
+    </section>
+    
+    <section id="contact" class="p-10 text-center">
+        <h3 class="text-2xl font-semibold">Nous Contacter</h3>
+        <p class="mt-4 text-gray-600">📍 85 Av. de la Colombière, 74950 Scionzier</p>
+        <p class="mt-2 text-gray-600">📞 07 87 15 02 48</p>
     </section>
     
     <footer class="bg-white shadow-md p-4 text-center">
-        <p class="text-gray-500">&copy; 2025 Mon Projet. Tous droits réservés.</p>
+        <p class="text-gray-500">&copy; 2025 Garage Niv’Adventure. Tous droits réservés.</p>
     </footer>
     
 </body>
