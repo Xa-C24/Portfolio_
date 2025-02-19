@@ -1,0 +1,19 @@
+.custom-header {
+  background-color: #1a1a1a; /* Gris anthracite */
+  color: #f8f8f8;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.custom-title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #ccc;
+  letter-spacing: 2px;
+}
+
+.map-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
