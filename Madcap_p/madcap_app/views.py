@@ -38,8 +38,10 @@ from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 import dns.resolver, re
 
+import random
 from .models import Avis  # Pour récupérer les avis
 from .forms import AvisForm  # Pour gérer le formulaire
+
 
 import logging
 import os
@@ -71,6 +73,9 @@ def histoire(request):
 
 def evenements(request):
     return render(request, 'evenements.html')
+
+def mentions_legales(request):
+    return render(request, 'mentions_legales.html')
 
 
 
@@ -124,8 +129,8 @@ def search_members(request):
     query = request.GET.get('q', '').strip()
     if query:
         members = Member.objects.filter(
-            Q(name__icontains=query) | Q(address__icontains=query)
-        ).order_by('name')
+    Q(name__icontains=query) | Q(address__icontains=query) | Q(date_entree__icontains=query)
+    ).order_by('name')
     else:
         members = Member.objects.all().order_by('name')
 
@@ -134,7 +139,7 @@ def search_members(request):
             'name': member.name,
             'address': member.address,
             'phone': member.phone,
-            'date_entree': member.date_entree.strftime('%b. %d, %Y') if member.date_entree else ''
+            'date_entree':  str(member.date_entree) if member.date_entree else ''
         }
         for member in members
     ]
@@ -156,7 +161,7 @@ def validate_email_domain(email):
 
 # Formulaire de contact suite
 
-# 🔥 Initialisation du logger
+# Initialisation du logger
 logger = logging.getLogger(__name__)
 
 def submit_contact(request):
@@ -166,7 +171,7 @@ def submit_contact(request):
         phone = request.POST.get('phone', '').strip()
         message = request.POST.get('message')
 
-        # 🔥 Log des données reçues
+        #  Log des données reçues
         print(f"📩 Tentative d'envoi avec : {name}, {email}, {phone}, {message}")
         logger.info(f"📩 Tentative d'envoi avec : {name}, {email}, {phone}, {message}")
 
@@ -185,13 +190,21 @@ def submit_contact(request):
             print(f"❌ Erreur email : {str(e)}")
             return redirect('contact')
 
+        #  Ajout de la validation du numéro de téléphone
+        try:
+            if phone:  # Vérifier uniquement s'il est rempli
+                phone = validate_phone_number(phone)
+        except ValidationError as e:
+            messages.error(request, f"❌ Erreur téléphone : {e}")
+            return redirect('contact')  # Bloque l'envoi si le numéro est invalide
+
         # Vérification de la longueur du message
         if len(message) < 20:
             messages.error(request, "❌ Le message doit contenir au moins 20 caractères.")
             print("❌ Erreur : Message trop court")
             return redirect('contact')
 
-        # 🔥 Récupération des infos d'email depuis le .env
+        #  Récupération des infos d'email depuis le .env
         email_host_user = os.getenv("EMAIL_HOST_USER")
         email_host_password = os.getenv("EMAIL_HOST_PASSWORD")
 
@@ -206,7 +219,7 @@ def submit_contact(request):
         try:
             print(f"📤 Tentative d'envoi d'email de {email_host_user} à {recipient_list}...")
             send_mail(subject, message_body, email_host_user, recipient_list, fail_silently=False)
-            messages.success(request, '✅ Votre message a bien été envoyé 📤 Nous reviendrons vers vous dans les meilleurs délais.')
+            messages.success(request, '✅ Votre message a bien été envoyé  Nous reviendrons vers vous dans les meilleurs délais.')
             print("✅ Email envoyé avec succès !")
         except Exception as e:
             messages.error(request, "❌ Une erreur est survenue lors de l'envoi de votre message, veuillez réessayer.")
@@ -221,19 +234,31 @@ def submit_contact(request):
 def validate_phone_number(phone):
     """
     Valide le format du numéro de téléphone :
-    - Formats acceptés :
-      - Français : 0687740273, 06 87 74 02 73
-      - International : +33687740273, +33 6 87 74 02 73, 0033687740273
+    - Français : 0687740273, 06 87 74 02 73
+    - International : +33687740273, +33 6 87 74 02 73, 0033687740273
+    - Europe : +447911123456 (UK), +393471234567 (Italie), +34698765432 (Espagne), 00491728533492 (Allemagne)
+    - Amérique du Nord : +1 202 555 0143 (USA), 001 514 555 1234 (Canada)
     """
     print(f"Debug: Numéro reçu pour validation : {phone}")  # Affiche le numéro reçu
+
+    if not phone:
+        return ""  # Autorise un champ vide sans le valider
 
     # Supprime tous les espaces, tirets ou points pour normaliser le numéro
     normalized_phone = re.sub(r'[ .-]', '', phone)
 
-    pattern = pattern = r'^(\+33|0033|0)(\d{9}|\d{2}(?:[ .-]?\d{2}){4})$'
+     # Regex amélioré pour accepter les numéros français et internationaux
+    pattern = r'^(?:\+|00)?(1|[2-9]\d{1,2})?\d{9,12}$' 
+    # Explication :
+    # (?:\+|00)?  -> Accepte les indicatifs internationaux sous la forme +XX ou 00XX
+    # \d{1,3}     -> Code pays (ex : 33, 44, 49, etc.)
+    # (1|[2-9]\d{1,2}) -> Accepte les codes pays (1 pour USA/Canada, 2-9XX pour les autres pays)
+    # \d{6,12}$   -> Numéro local (minimum 6 chiffres, max 12 pour couvrir tous les formats)
+
     if not re.match(pattern, normalized_phone):
-        raise ValidationError("Le numéro de téléphone n'est pas valide. Utilisez un format français ou international.")
-    return normalized_phone
+        raise ValidationError("❌ Le numéro de téléphone n'est pas valide. Utilisez un format français ou international.")
+
+    return normalized_phone  # Retourne le numéro normalisé
 
 
 # Avis
@@ -260,11 +285,11 @@ def livre_dor(request):
                 messages.error(request, f"Erreur email : {e}")
                 return redirect('livre_dor')
 
-            # Validation du numéro de téléphone
+             # **Validation du numéro de téléphone**
             try:
-                telephone = validate_phone_number(telephone)  # Normalisation du numéro
+                telephone = validate_phone_number(telephone)  # Applique la même validation
             except ValidationError as e:
-                messages.error(request, f"Erreur téléphone : {e}")
+                messages.error(request, f"❌ Erreur téléphone : {e}")
                 return redirect('livre_dor')
 
             # Vérification de la longueur du message
@@ -291,12 +316,37 @@ def livre_dor(request):
     return render(request, 'livre_dor.html', {'form': form, 'avis_list': avis_list})
 
 
+  # Récupérer 4 Avis aléatoire pour page index.html
+
+def index(request):
+
+   # Récupérer tous les avis (sans validation)
+    avis_disponibles = Avis.objects.all()
+
+    # Sélectionner 4 avis aléatoires si au moins 4 existent
+    avis_aleatoires = random.sample(list(avis_disponibles), min(len(avis_disponibles), 4))
+
+    return render(request, 'index.html', {'avis_aleatoires': avis_aleatoires})
+
+
+def avis_ajax(request):
+    avis_disponibles = Avis.objects.all()
+    avis_aleatoires = random.sample(list(avis_disponibles), min(len(avis_disponibles), 4))
+
+    data = [
+        {"nom": avis.nom, "note": avis.note, "message": avis.message, "date": avis.date.strftime("%d/%m/%Y")}
+        for avis in avis_aleatoires
+    ]
+
+    return JsonResponse(data, safe=False)
+
+
 # Changement de langue FR/EN
 
 def change_language(request, lang_code):
     if lang_code in dict(settings.LANGUAGES).keys():
-        activate(lang_code)  # 🔥 Active immédiatement la langue
-        request.session['django_language'] = lang_code  # 🔥 Stocke la langue dans la session
+        activate(lang_code)  #  Active immédiatement la langue
+        request.session['django_language'] = lang_code  #  Stocke la langue dans la session
         response = HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
         response.set_cookie('django_language', lang_code, max_age=60*60*24*365)  # 🔥 Stocke aussi dans le cookie
         return response

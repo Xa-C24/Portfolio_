@@ -8,7 +8,7 @@
 <!-- Barre supérieure avec icônes et texte -->
 <div class="top-bar">
   <div class="top-bar-center">
-    <h2 class="top-bar-text">Madcap, le plus vieux côtre-pilote encore en état de naviguer</h2>
+    <h2 class="top-bar-text">{% trans "Madcap, le plus vieux côtre-pilote encore en état de naviguer" %}</h2>
   </div>
 
   <div class="top-bar-right">
@@ -21,7 +21,7 @@
     </a>
 
 
-    <a href="{% url 'admin_login' %}" class="admin-button">Espace Admin</a>
+    <a href="{% url 'admin_login' %}" class="admin-button">{% trans "Espace Admin" %}</a>
   </div>
 </div>
 
@@ -29,7 +29,7 @@
 <header>
   <div class="video-container-header">
     <a href="/">
-      <img src="{% static 'images/logo.png' %}" alt="Logo Madcap" class="logo-in-video">
+      <img src="{% static 'images/logo3.png' %}" alt="Logo Madcap" class="logo-in-video">
     </a>
     <video autoplay muted loop playsinline>
       <source src="{% static 'videos/gif.mp4' %}" type="video/mp4">
@@ -45,27 +45,34 @@
 <nav id="main-nav">
   <ul class="nav-links">
 
-<!-- Logo météo cliquable vers la carte Windy -->
-<div class="top-bar-right nav-weather-logo">
-<a href="/#map-container" class="social-logo weather" title="Voir la météo">
-  <img src="{% static 'images/logo_meteo2.png' %}" alt="Météo Windy" />
-</a>
-</div>
+      <!-- Logo météo cliquable vers la carte Windy -->
+      <div class="logo-asso-header ">
+        <a href="#top" class="scroll-top" title="Revenir en haut">
+          <img src="{% static 'images/logo3.png' %}" alt="Logo Madcap bandeau header" />
+      </a>
+      </div>
 
-    <li><a href="/">Accueil</a></li>
-    <li><a href="/association">À propos de l'association</a></li>
-    <li><a href="/histoire">L'Histoire de Madcap</a></li>
-    <li><a href="/evenements">Événements</a></li>
-    <li><a href="/don">Soutenir le projet</a></li>
-    <li><a href="/livre_dor">Votre experience</a></li>
-    <li><a href="/contact">Nous Contacter</a></li>
-    
+        <li><a href="/">{% trans "Accueil" %}</a></li>
+        <li><a href="/association">{% trans "À propos de l'Association" %}</a></li>
+        <li><a href="/histoire">{% trans "L'Histoire de Madcap" %}</a></li>
+        <li><a href="/evenements">{% trans "Événements" %}</a></li>
+        <li><a href="/don">{% trans "Soutenir le Projet" %}</a></li>
+        <li><a href="/livre_dor">{% trans "Votre Expérience" %}</a></li>
+        <li><a href="/contact">{% trans "Nous Contacter" %}</a></li>
+          
   </ul>
+
+  <!-- Logo météo cliquable vers la carte Windy -->
+      <div class="top-bar-right nav-weather-logo">
+          <a href="/#map-container" class="social-logo weather" title="Voir la météo">
+          <img src="{% static 'images/logo_meteo2.png' %}" alt="Météo Windy" />
+        </a>
+      </div>
 
   <div class="language-switcher">
     <button class="current-language">
       {% if request.LANGUAGE_CODE == "fr" %}
-        <img src="{% static 'images/Flag_Fr.jpg' %}" class="flag">
+        <img src="{% static 'images/Flag_France.jpg' %}" class="flag">
       {% else %}
         <img src="{% static 'images/Flag_Uk.jpg' %}" class="flag">
       {% endif %}
