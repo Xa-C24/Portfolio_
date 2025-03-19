@@ -1,5 +1,7 @@
 # BTC Energies # BTC Énergies - Refonte du Site Web
 
+[⛵ --------BTC Energies--------⛵](https://tangerine-babka-89b76d.netlify.app/)
+
 ## Introduction
 
 Bienvenue dans le projet de refonte du site web de **BTC Énergies** ! Ce projet a pour objectif de moderniser et d'optimiser l'interface utilisateur, ainsi que d'améliorer les performances et les fonctionnalités du site existant.
@@ -9,7 +11,7 @@ Bienvenue dans le projet de refonte du site web de **BTC Énergies** ! Ce projet
 - **Amélioration des performances** : Optimisation du temps de chargement, utilisation de technologies modernes pour rendre le site plus rapide et fluide.
 - **Meilleure expérience utilisateur** : Simplification de la navigation, amélioration de la structure des pages et des fonctionnalités interactives.
 - **Réactivité mobile** : Assurer une expérience utilisateur optimale sur tous les appareils, y compris les smartphones et tablettes.
-- **Version multilingues** : Proposer aux utilisateurs le choix de la langue ( Anglais, autre ? ).
+- **Version multilingues** : Proposer aux utilisateurs le choix de la langue ( Anglais, Français, Allemans, Espagnol, Italien, Japonais, Chinois).
 
 ### Technologies utilisées :
 - **Backend** : Django (Python) pour gérer la logique serveur et les bases de données.
