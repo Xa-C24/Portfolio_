@@ -1,6 +1,6 @@
 # BTC Energies # BTC Énergies - Refonte du Site Web
 
-[⛵ --------BTC Energies--------⛵](https://tangerine-babka-89b76d.netlify.app/)
+[ --------BTC Energies En développement--------](https://tangerine-babka-89b76d.netlify.app/)
 
 ## Introduction
 
