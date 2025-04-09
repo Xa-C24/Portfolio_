@@ -8,12 +8,12 @@
 Madcap1874 est un site web développé pour présenter l'histoire du bateau Madcap, promouvoir l'association, permettre l'inscription de nouveaux membres et recueillir les témoignages des visiteurs. Le site est également un espace interactif avec une météo en temps réel, des informations sur les événements à venir et des liens pour soutenir l'association.
 
 ## 🌐 Hébergement & Déploiement
-Le site Madcap1874 est hébergé sur Render 🎉   [⛵ --------Visitez Madcap1874 --------⛵](https://madcap-70h2.onrender.com/)
+Le site Madcap1874 est hébergé sur Pythonanywhere  [⛵ --------Visitez Madcap1874 --------⛵](https://madcap1874.pythonanywhere.com//)
 
 ![Déploiement Render ok](https://raw.githubusercontent.com/Xa-C24/Madcap/main/static/images/image_docs/render_builtok.png)
 
 🚀 Déploiement sur Render
-Base de données
+Base de données 
 PostgreSQL est utilisé sur Render.com
 Ajout des variables d’environnement (DATABASE_URL)
 
