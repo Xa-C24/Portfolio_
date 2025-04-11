@@ -8,12 +8,12 @@
 Madcap1874 est un site web développé pour présenter l'histoire du bateau Madcap, promouvoir l'association, permettre l'inscription de nouveaux membres et recueillir les témoignages des visiteurs. Le site est également un espace interactif avec une météo en temps réel, des informations sur les événements à venir et des liens pour soutenir l'association.
 
 ## 🌐 Hébergement & Déploiement
-Le site Madcap1874 est hébergé sur Pythonanywhere  [⛵ --------Visitez Madcap1874 --------⛵](https://madcap1874.pythonanywhere.com//)
+Le site Madcap1874 est hébergé sur Pytonanywhere 🎉   [⛵ --------Visitez Madcap1874 --------⛵](https://madcap1874.pythonanywhere.com/)
 
 ![Déploiement Render ok](https://raw.githubusercontent.com/Xa-C24/Madcap/main/static/images/image_docs/render_builtok.png)
 
-🚀 Déploiement sur Render
-Base de données 
+🚀 Déploiement sur Pythonanywhere
+Base de données
 PostgreSQL est utilisé sur Render.com
 Ajout des variables d’environnement (DATABASE_URL)
 
@@ -224,7 +224,10 @@ Les fichiers .po contiennent les traductions et sont compilés en .mo pour être
 Les balises {% trans %} et {% blocktrans %} permettent d’afficher du texte traduit dans les templates.  
 
 ### 🔄 Générer et mettre à jour les traductions
-1. Extraire les chaînes de caractères à traduire:  
+1. Extraire les chaînes de caractères à traduire:
+
+      export DJANGO_SETTINGS_MODULE=madcap_project.settings
+
       django-admin makemessages -l en
 
 2. Modifier les fichiers de traduction (.po) dans 
@@ -232,6 +235,10 @@ Les balises {% trans %} et {% blocktrans %} permettent d’afficher du texte tra
 
 3. Compiler les fichiers de traduction;
       django-admin compilemessages
+      export DJANGO_SETTINGS_MODULE=madcap_project.settings
+      export DJANGO_SETTINGS_MODULE=madcap_project.settings
+
+
 
 Un sélecteur de langue est disponible sur le site permettant de basculer entre les flags FR <img src="https://github.com/Xa-C24/Madcap/blob/main/static/images/Flag_France.jpg?raw=true" width="25"/> et UK <img src="https://github.com/Xa-C24/Madcap/blob/main/static/images/Flag_Uk.jpg?raw=true" width="25"/>.
 
